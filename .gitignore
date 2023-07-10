@@ -1,2 +1,3 @@
 backend/1_document_prefetch/data
-
+__pycache__/
+.ipynb_checkpoints/
