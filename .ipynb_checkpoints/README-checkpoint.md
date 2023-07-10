@@ -178,4 +178,10 @@ npm install
 export REACT_APP_NLP_SERVER_ADDRESS=http://localhost:8060; npm start
 
 ```
+Check the version of node.js by 
+```bash
+node -v
+```
+This platform has been tested on node v20.1.0.
+
 Now the frontend service (React based) is running on PORT 3000. You can now open your browser and go to http://localhost:3000 to use SciLit!

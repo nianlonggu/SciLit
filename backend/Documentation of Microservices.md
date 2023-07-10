@@ -2,6 +2,12 @@
 
 
 ```python
+!pip install -q imageio
+!pip install -q termcolor
+```
+
+
+```python
 import requests, json
 import matplotlib.pyplot as plt
 import imageio
@@ -28,7 +34,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 def print_title(title, max_len = 110):
-    title = title +" " * (max_len-len(title)) +'"Cite'
+    title = title +" " * (max_len-len(title)) +' "Cite'
     print(bcolors.BOLD + bcolors.HEADER + title + bcolors.ENDC)
 
 def print_year(year):
@@ -222,7 +228,7 @@ output = requests.post( api_gateway_address+"/ml-api/doc-search/v1.0",
 print(output)
 ```
 
-    {'query_id': '8e0194c5-3a12-49d6-a84b-006347af0ef8', 'response': [{'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 675}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 436}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 576}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 345}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 481}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 582}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 518}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 755}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 344}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 503}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 955}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 490}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 506}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 917}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 485}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 735}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 856}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 541}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 680}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 351}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 152}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 300}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 483}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 193}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 790}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 11}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 372}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 55}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 430}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 43}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 13}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 312}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 44}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 93}], 'search_stats': {'DurationTotalSearch': 1360, 'nMatchingDocuments': 34}}
+    {'query_id': 'd510ee29-6c02-490f-b38d-a5e57fdf7c97', 'response': [{'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 798}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 499}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 664}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 251}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 38}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 722}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 213}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 504}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 1011}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 638}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 346}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 666}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 905}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 237}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 708}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 712}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 340}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 1007}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 787}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 535}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 404}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 700}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 461}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 784}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 212}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 12}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 143}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 640}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 292}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 843}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 44}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 557}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 547}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 813}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 448}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 822}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 23}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 752}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 337}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 745}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 530}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 786}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 250}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 781}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 1027}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 502}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 435}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 639}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 77}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 704}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 331}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 870}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 993}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 641}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 1006}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 732}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 645}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 324}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 680}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 89}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 808}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 32}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 966}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 554}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 505}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 5}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 815}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 189}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 391}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 359}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 740}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 768}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 466}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 624}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 97}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 337}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 869}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 586}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 246}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 180}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 725}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 858}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 847}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 1020}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 1019}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 855}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 67}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 501}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 650}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 898}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 173}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 586}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 77}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 979}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 306}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 394}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 666}, {'collection': 'PMCOA', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 986}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 111}, {'collection': 'arXiv', 'id_field': 'id_int', 'id_type': 'int', 'id_value': 607}], 'search_stats': {'DurationTotalSearch': 9695, 'nMatchingDocuments': 143}}
 
 
 ## Microservice: Query Paper Database
@@ -288,45 +294,44 @@ Let's have a look at the first 10 search results:
 print_pagination_results( search_document_contents[:10])
 ```
 
-    [1m[95mFACT: High-Dimensional Random Forests Inference *                                                             "Cite[0m
-    [1m[94m2022[0m
-    Chien-Ming Chi   Yingying Fan   Jinchi Lv   Academia Sinica
+    [1m[95mA systematic review of participatory approaches to empower health workers in low- and middle-income countries, highlighting Health Workers for Change "Cite[0m
+    [1m[94m2023[0m
     
-    [1m[95mRepresentation Learning with Information Theory for COVID-19 Detection                                        "Cite[0m
-    [1m[94m2022[0m
-    Abel Díaz Berenguer   Tanmoy Mukherjee   Matias Bossa   Nikos Deligiannis   Hichem Sahli
+    [1m[95mAcceptance of Public Health Measures During the COVID-19 Pandemic: A Cross-Sectional Study of the Swiss Population’s Beliefs, Attitudes, Trust, and Information-Seeking Behavior "Cite[0m
+    [1m[94m2023[0m
+    Maddalena Fiordelli   Maddalena Fiordelli   Sara Rubinelli   Sara Rubinelli   Nicola Diviani   Nicola Diviani
     
-    [1m[95mSpatiotemporal Feature Learning Based on Two-Step LSTM and Transformer for CT Scans                           "Cite[0m
-    [1m[94m2022[0m
-    Chih-Chung Hsu   Chi-Han Tsai   Guan-Lin Chen   Sin-Di Ma   Shen-Chieh Tai
+    [1m[95mDoes COVID-19 vaccine exacerbate rotator cuff symptoms? A prospective study                                    "Cite[0m
+    [1m[94m2023[0m
+    Servet İğrek   İbrahim Ulusoy   Aytek Hüseyin Çeliksöz
     
-    [1m[95mCan Competition Outperform Collaboration? The Role of Malicious Agents                                        "Cite[0m
-    [1m[94m2022[0m
-    Luca Ballotta   Luca Schenato   Giacomo Como   Jeff Shamma
+    [1m[95mA rapid cell-free expression and screening platform for antibody discovery                                     "Cite[0m
+    [1m[94m2023[0m
+    Andrew C. Hunt   Andrew C. Hunt   Bastian Vögeli   Bastian Vögeli   Ahmed O. Hassan   Laura Guerrero   Laura Guerrero   Weston Kightlinger   Weston Kightlinger   Danielle J. Yoesep   Danielle J. Yoesep   Antje Krüger   Antje Krüger   Madison DeWinter   Madison DeWinter   Madison DeWinter   Michael S. Diamond   Michael S. Diamond   Michael S. Diamond   Michael S. Diamond   Ashty S. Karim   Ashty S. Karim   Michael C. Jewett   Michael C. Jewett   Michael C. Jewett   Michael C. Jewett   Michael C. Jewett
     
-    [1m[95m"COVID-19 was a FIFA conspiracy #curropt": An Investigation into the Viral Spread of COVID-19 Misinformation  "Cite[0m
-    [1m[94m2022[0m
-    Alexander Wang   Jerry Sun   Kaitlyn Chen   Kevin Zhou   Edward Li   Chenxin Fang
+    [1m[95mAssociations of online religious participation during COVID-19 lockdown with subsequent health and well-being among UK adults "Cite[0m
+    [1m[94m2023[0m
+    Koichiro Shiba   Koichiro Shiba   Richard G. Cowden   Natasha Gonzalez   Yusuf Ransome   Atsushi Nakagomi   Ying Chen   Matthew T. Lee   Tyler J. VanderWeele   Tyler J. VanderWeele   Tyler J. VanderWeele   Daisy Fancourt
     
-    [1m[95mCOVID-19 Modeling Based on Real Geographic and Population Data                                                "Cite[0m
-    [1m[94m2022[0m
-    Emir Baysazan   A Nihat Berker   Hasan Mandal   Hakan Kaygusuz
+    [1m[95mThe diversity of providers’ and consumers’ views of virtual versus inpatient care provision: a qualitative study "Cite[0m
+    [1m[94m2023[0m
+    Robyn Clay-Williams   Peter Hibbert   Peter Hibbert   Ann Carrigan   Ann Carrigan   Natalie Roberts   Elizabeth Austin   Diana Fajardo Pulido   Isabelle Meulenbroeks   Hoa Mi Nguyen   Mitchell Sarkies   Sarah Hatem   Katherine Maka   Graeme Loy   Jeffrey Braithwaite
     
-    [1m[95mAdaptive GLCM sampling for transformer-based COVID-19 detection on CT                                         "Cite[0m
-    [1m[94m2022[0m
-    Jung Okchul   Dong 1⋆    Kang   Gwanghyun 1⋆   Se Chun
+    [1m[95mUtilizing a Capture-Recapture Strategy to Accelerate Infectious Disease Surveillance                           "Cite[0m
+    [1m[94m2023[0m
+    Lin Ge   Yuzi Zhang   Lance Waller   Robert Lyles
     
-    [1m[95mFDVTS's Solution for 2nd COV19D Competition on COVID-19 Detection and Severity Analysis                       "Cite[0m
-    [1m[94m2022[0m
-    Junlin Hou   Jilan Xu   Rui Feng   Yuejie Zhang
+    [1m[95mWhat is the health status of girls and boys in the COVID-19 pandemic? Selected results of the KIDA study       "Cite[0m
+    [1m[94m2023[0m
+    Julika Loss   Miriam Blume   Laura Neuperdt   Nadine Flerlage   Tim Weihrauch   Kristin Manz   Roma Thamm   Christina Poethko-Müller   Elvira Mauz   Petra Rattay   Jennifer Allen   Mira Tschorn   Mira Tschorn
     
-    [1m[95mMulti-scale alignment and Spatial ROI Module for COVID-19 Diagnosis                                           "Cite[0m
-    [1m[94m2022[0m
-    Hongyan Xu   Dadong Wang   Arcot Sowmya
+    [1m[95mProlonged T-cell activation and long COVID symptoms independently associate with severe COVID-19 at 3 months   "Cite[0m
+    [1m[94m2023[0m
+    Marianna Santopaolo   Michaela Gregorova   Fergus Hamilton   David Arnold   Anna Long   Aurora Lacey   Elizabeth Oliver   Alice Halliday   Holly Baum   Kristy Hamilton   Rachel Milligan   Olivia Pearce   Lea Knezevic   Begonia Morales Aza   Alice Milne   Emily Milodowski   Eben Jones   Rajeka Lazarus   Anu Goenka   Anu Goenka   Adam Finn   Adam Finn   Adam Finn   Nicholas Maskell   Andrew D Davidson   Kathleen Gillespie   Linda Wooldridge   Laura Rivino
     
-    [1m[95mCoVaxNet: An Online-Offline Data Repository for COVID-19 Vaccine Hesitancy Research                           "Cite[0m
-    [1m[94m2022[0m
-    Bohan Jiang   Paras Sheth   Baoxin Li   Huan Liu
+    [1m[95mUsing technology to reduce critical deterioration (the DETECT study): a cost analysis of care costs at a tertiary children's hospital in the United Kingdom "Cite[0m
+    [1m[94m2023[0m
+    Eduardo Costa   Eduardo Costa   Céu Mateus   Bernie Carter   Holly Saron   Chin-Kien Eyton-Chong   Fulya Mehta   Steven Lane   Sarah Siner   Jason Dean   Michael Barnes   Chris McNally   Caroline Lambert   Caroline Lambert   Bruce Hollingsworth   Enitan D. Carrol   Enitan D. Carrol   Gerri Sefton
     
 
 
@@ -401,14 +406,14 @@ summary
 
 
 
-    {'summary': ['In this paper, we approach the problem via hypothesis testing, and suggest a framework of the self-normalized feature-residual correlation test (FACT) for evaluating the significance of a given feature in the random forests model with bias-resistance property, where our null hypothesis concerns whether the feature is conditionally independent of the response given all other features.',
-      'We exploit the techniques of imbalancing and conditioning for bias correction.',
-      'The theoretical results and finite-sample advantages of the newly suggested method are illustrated with several simulation examples and an economic forecasting application in relation to COVID-19.',
-      'In Section 7, we demonstrate how to apply the FACT test to macroeconomic data FRED-MD [39] for assessing the significance of a set of macroeconomic variables regarding important responses such as the inflation, interest rate, and unemployment rate.',
-      'In addition, we showcase how to use the rolling-window p-values to study the effects of time frames on the relevance of features in recent years.',
-      'To our best knowledge, our work is the first one to provide a fully comprehensive and theoretically grounded analysis on random forests inference for testing feature importance under general high-dimensional nonparametric model settings.',
-      'In this section, we introduce the main ideas for the FACT framework for high-dimensional random forests inference of feature importance.'],
-     'sentence_position': [5, 8, 11, 84, 85, 86, 159]}
+    {'summary': ['Abstract This systematic review assesses participatory approaches to motivating positive change among health workers in low- and middle-income countries (LMICs).',
+      'The mistreatment of clients at health centres has been extensively documented, causing stress among clients, health complications and even avoidance of health centres altogether.',
+      'Health workers, too, face challenges, including medicine shortages, task shifting, inadequate training and a lack of managerial support.',
+      'Solutions are urgently needed to realise global commitments to quality primary healthcare, country ownership and universal health coverage.',
+      'This review searched 1243 titles and abstracts, of which 32 were extracted for full text review using a published critical assessment tool.',
+      'Eight papers were retained for final review, all using a single methodology, ‘Health Workers for Change’ (HWFC).',
+      'Health workers acknowledged their negative behaviour towards clients, often as a way of coping with their own unmet needs.'],
+     'sentence_position': [0, 1, 2, 3, 4, 5, 8]}
 
 
 
@@ -480,11 +485,11 @@ citation_sentences
 
 
 
-    ['For example, a dual role network (DRN) #CIT has been proposed for the treatment of Covid-19.',
-     'For example, the self-normalized feature-residual correlation test (FACT) #CIT is proposed for evaluating the significance of a given feature in random forests with bias-residual property, where the null hypothesis is whether the feature is conditionally independent of the response given all other features.',
-     'For example, a two-step approach has been proposed to learn spatio-temporal features for Covid-19 diagnosis #CIT.',
-     'For example, a multi-scale alignment and a spatial ROI module have been proposed to detect Covid-19 in CT and CXR images #CIT.',
-     'For example, the 3D Contrastive Mixup Classification Network (CMCNN) has been applied for the COVID-19 diagnosis task in the 2nd COV19D competition #CIT.']
+    ['However, the treatment of Covid-19 has been largely based on a lack of knowledge, skills, and experience [ #CIT ].',
+     'However, there is still a lack of data on the effects of Covid-19 vaccination on shoulder injury [ #CIT ].',
+     'IL-5 is a well-known anti-inflammatory cytokine that plays an important role in the treatment of COVID-19 [ #CIT ].',
+     'For example, a large reservoir-based continuous positive airway pressure (CPAP) has been developed for the treatment of COVID-19 [ #CIT ].',
+     'For example, the treatment of Covid-19 has been mainly based on the use of a variety of drugs [ #CIT ].']
 
 
 
@@ -538,10 +543,10 @@ requests.post( api_gateway_address +"/ml-api/citation-formatting-service/v1.0",
 
 
 
-    {'response': [{'bibtex': '@article{2003, paperIDInfo={collection:PMCOA, id_value:1, id_type:int}, title={The Transcriptome of the Intraerythrocytic Developmental Cycle of Plasmodium falciparum}, volume={1}, ISSN={1545-7885}, url={http://dx.doi.org/10.1371/journal.pbio.0000005}, DOI={10.1371/journal.pbio.0000005}, number={1}, journal={PLoS Biology}, publisher={Public Library of Science (PLoS)}, author={Bozdech, Zbynek and Llinás, Manuel and Pulliam, Brian Lee and Wong, Edith D and Zhu, Jingchun and DeRisi, Joseph L}, editor={Gary Ward}, year={2003}, month={Aug}, pages={e5} }',
-       'mla': 'Bozdech, Zbyneket al. “The Transcriptome of the Intraerythrocytic Developmental Cycle of Plasmodium falciparum.” PLoS Biology (2003).'},
-      {'bibtex': '@article{2003, paperIDInfo={collection:PMCOA, id_value:2, id_type:int}, title={DNA Analysis Indicates That Asian Elephants Are Native to Borneo and Are Therefore a High Priority for Conservation}, volume={1}, ISSN={1545-7885}, url={http://dx.doi.org/10.1371/journal.pbio.0000006}, DOI={10.1371/journal.pbio.0000006}, number={1}, journal={PLoS Biology}, publisher={Public Library of Science (PLoS)}, author={Fernando, Prithiviraj and Vidya, T. N. C and Payne, John and Stuewe, Michael and Davison, Geoffrey and Alfred, Raymond J and Andau, Patrick and Bosi, Edwin and Kilbourn, Annelisa and Melnick, Don J}, editor={Craig Moritz}, year={2003}, month={Aug}, pages={e6} }',
-       'mla': 'Fernando, Prithiviraj, et al. “DNA Analysis Indicates That Asian Elephants Are Native to Borneo and Are Therefore a High Priority for Conservation.” PLoS Biology, edited by Craig Moritz, vol. 1, no. 1, Aug. 2003, p. e6. Crossref, https://doi.org/10.1371/journal.pbio.0000006.'}]}
+    {'response': [{'bibtex': '@article{2022, paperIDInfo={collection:PMCOA, id_value:1, id_type:int}, title={“Bringing you the Best”: John Player &amp; Sons, Cricket, and the Politics of Tobacco Sport Sponsorship in Britain, 1969–1986}, volume={80}, ISSN={2666-7711}, url={http://dx.doi.org/10.1163/26667711-bja10022}, DOI={10.1163/26667711-bja10022}, number={1}, journal={European Journal for the History of Medicine and Health}, publisher={Brill}, author={O’Neill, Daniel and Greenwood, Anna}, year={2022}, month={Aug}, pages={152–184} }',
+       'mla': 'O’Neill, Daniel, and Anna Greenwood. “‘Bringing You the Best’: John Player &amp; Sons, Cricket, and the Politics of Tobacco Sport Sponsorship in Britain, 1969–1986.” European Journal for the History of Medicine and Health, vol. 80, no. 1, Aug. 2022, pp. 152–84. Crossref, https://doi.org/10.1163/26667711-bja10022.'},
+      {'bibtex': '@article{2022, paperIDInfo={collection:PMCOA, id_value:2, id_type:int}, title={Acetylcholine Boosts Dendritic NMDA Spikes in a CA3 Pyramidal Neuron Model}, volume={489}, ISSN={0306-4522}, url={http://dx.doi.org/10.1016/j.neuroscience.2021.11.014}, DOI={10.1016/j.neuroscience.2021.11.014}, journal={Neuroscience}, publisher={Elsevier BV}, author={Humphries, Rachel and Mellor, Jack R. and O’Donnell, Cian}, year={2022}, month={May}, pages={69–83} }',
+       'mla': 'Humphries, Rachel, et al. “Acetylcholine Boosts Dendritic NMDA Spikes in a CA3 Pyramidal Neuron Model.” Neuroscience, vol. 489, May 2022, pp. 69–83. Crossref, https://doi.org/10.1016/j.neuroscience.2021.11.014.'}]}
 
 
 
@@ -587,7 +592,7 @@ api_gateway_address+"/ml-api/title-generic-search/v1.0"
 query_data = {
     "titles":[
         ## Either is okay: 1) a title's string or 2) a dictionary with "Title" (and "Author") as keys.
-        "Adaptive GLCM sampling for transformer-based COVID-19 detection on CT ",
+        "A rapid cell-free expression and screening platform for antibody discovery  ",
         {"Title":"Adaptive GLCM sampling for transformer-based COVID-19 detection on CT ",
          "Author": [{'GivenName': 'Jung', 'FamilyName': 'Okchul'}]
         },
@@ -605,24 +610,19 @@ searched_papers
 
 
 
-    [{'Title': 'Adaptive GLCM sampling for transformer-based COVID-19 detection on CT ',
+    [{'Title': 'A rapid cell-free expression and screening platform for antibody discovery  ',
       'Author': [],
       'First_Author': '',
       'found': True,
-      'collection': 'arXiv',
+      'collection': 'PMCOA',
       'id_field': 'id_int',
       'id_type': 'int',
-      'id_value': 518,
-      '_id': 'arXiv_518'},
+      'id_value': 251,
+      '_id': 'PMCOA_251'},
      {'Title': 'Adaptive GLCM sampling for transformer-based COVID-19 detection on CT ',
       'Author': [{'GivenName': 'Jung', 'FamilyName': 'Okchul'}],
       'First_Author': 'Jung Okchul',
-      'found': True,
-      'collection': 'arXiv',
-      'id_field': 'id_int',
-      'id_type': 'int',
-      'id_value': 518,
-      '_id': 'arXiv_518'}]
+      'found': False}]
 
 
 
