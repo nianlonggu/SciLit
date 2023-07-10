@@ -18,6 +18,7 @@ LIVE DEMO: https://scilit.vercel.app/
 ### Install Docker
 
 #### Install Docker engine
+#####  On Ubuntu
 ```bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
@@ -36,6 +37,10 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 See detailed installation instruction on [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+##### On Debian
+The installation is similar to Ubuntu but not completely the same. E.g, the address is "https://download.docker.com/linux/debian" for the source list. Please see detailed installation instruction on [Docker (Debian)](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
+
+
 
 #### Add current user into docker group to avoid explicitly use sudo
 ```bash
@@ -84,6 +89,8 @@ Please refer https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/l
 ### Install Node.js
 ```bash
 sudo apt update
+## make sure the node version is 20.x
+curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install nodejs npm
 ```
 
