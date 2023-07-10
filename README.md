@@ -8,7 +8,7 @@ A comprehensive full-stack solution has been developed for the creation of a lar
 LIVE DEMO: https://scilit.vercel.app/
 
 ## System Requirements
-* OS: Ubuntu 22.04 LTS, with one or two GPUs for supporting NLP functions.
+* OS: Ubuntu 22.04 LTS or Debian 10, with one 16 GB GPU for supporting NLP functions.
 * Storage: >= 100 GB
 * RAM: 
      - 32GB if the database contains around 2~3  millions of papers;
@@ -36,9 +36,26 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo docker run hello-world
 ```
-See detailed installation instruction on [Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+See detailed installation instruction on [Docker Engine Installation (Ubuntu)](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 ##### On Debian
-The installation is similar to Ubuntu but not completely the same. E.g, the address is "https://download.docker.com/linux/debian" for the source list. Please see detailed installation instruction on [Docker (Debian)](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
+```bash
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo docker run hello-world
+```
+Please see detailed installation instruction on [Docker Engine Installation (Debian)](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
 
 
 
@@ -62,39 +79,38 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
       && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
             sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
             sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-
+```
+Then resolve the package conflicting error before running "apt-get update": E: Conflicting values set for option Signed-By regarding source ... (See https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/troubleshooting.html#conflicting-values-set-for-option-signed-by-error-when-running-apt-update for the details.)
+```
+sudo rm $(grep -l "nvidia.github.io" /etc/apt/sources.list.d/* | grep -vE "/nvidia-container-toolkit.list\$")
+```
+Then install nvidia-container-toolkit and restart docker
+```bash
 sudo apt-get update
 sudo apt-get install -y nvidia-container-toolkit
 sudo nvidia-ctk runtime configure --runtime=docker
 sudo systemctl restart docker
-
-### test if GPU can be detected within docker containers
-docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
-
 ```
+Test if GPU can be detected within docker containers
+```bash
+docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
+```
+See https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#setting-up-docker for more details.
+
 #### Install Docker Compose
 ```bash
 pip install docker-compose
 ```
-#### Trouble Shooting
-When or after installing the nvidia-container-toolkit, you might see some error messages when running "sudo apt-get update". In that case, run
-```bash
-sudo rm $(grep -l "nvidia.github.io" /etc/apt/sources.list.d/* | grep -vE "/nvidia-container-toolkit.list\$")
-```
-to resolve the issue.
-
-Please refer https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/troubleshooting.html#conflicting-values-set-for-option-signed-by-error-when-running-apt-update for the detailed solution
-
 
 ### Install Node.js
 ```bash
 sudo apt update
 ## make sure the node version is 20.x
 curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt install nodejs npm
+sudo apt install nodejs
 ```
 
-## Prepare Papers for Indexing
+## Prepare Raw Corpus
 Here we demonstrated building the search engine on papers from PubMed Open Access (PMCOA) and arXiv.
 ### PMCOA
 We can download the .tar.gz files from the official FTP service https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/oa_comm/xml/, and put the files into the folder:
@@ -138,13 +154,16 @@ backend/1_document_prefetch/data/arXiv/
         └── 2307
 ```
 
-## Build Paper Index 
-This is used for search engine for existing collections (PMCOA and arXiv in our case).
+## Build Paper Database 
+
+Convert the corpus from the original format (tar.gz for PMCOA and PDF for arXiv) to a unified SQLite paper database, in which each record represents a paper and follows the same JSON schema. This is used for search engine for existing collections.
 ```bash
 BASE_DIR=$PWD
 cd backend/1_document_prefetch/ && bash script_build_all_databases.sh
 cd $BASE_DIR
 ```
+
+Running this script automatically builds the databases for PMCOA and arXiv. The dockerized code base for building databases for these two collections is available at **backend/1_document_prefetch/src/build_database/**
 
 ## Start Backend Services
 ```bash
@@ -175,7 +194,8 @@ This PORT can be changed in the [docker-compose.yaml file of the api gateway](ba
 Please refer to the [API documentation](backend/Documentation%20of%20Microservices.md) for details on the usage of all backend APIs for developing a scientific document search engine enriched with NLP functions.
 
 ## Start Frontend Service (the SciLit webpage)
-Here we suppose that the backend is running on the same host machine and is listening to the PORT 8060.
+Here we suppose that the backend is running on the same local machine and is listening to the PORT 8060.
+If the backend is running on a remote server (e.g., google cloud VM), please replace "localhost" with the server's IP address.
 
 ```bash
 BASE_DIR=$PWD
@@ -185,10 +205,5 @@ npm install
 export REACT_APP_NLP_SERVER_ADDRESS=http://localhost:8060; npm start
 
 ```
-Check the version of node.js by 
-```bash
-node -v
-```
-This platform has been tested on node v20.1.0.
 
 Now the frontend service (React based) is running on PORT 3000. You can now open your browser and go to http://localhost:3000 to use SciLit!
