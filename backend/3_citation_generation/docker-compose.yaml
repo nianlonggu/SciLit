@@ -1,0 +1,22 @@
+version: '3'
+
+### environment variables
+
+services:
+    citation_generation_service: 
+        build: .
+        image: citation_generation_service
+        runtime: nvidia  # comment this out on a CPU-only host machine, and set USE_GPU to 0
+        environment:
+            NVIDIA_VISIBLE_DEVICES: all
+            PYTHONUNBUFFERED: 1
+            USE_GPU: 1
+            PAPER_DATABASE_SERVICE_ADDRESS: http://paper_database_service:8060/get-papers
+        networks:
+            - common_network
+        hostname: citation_generation_service
+        ports:
+            - 8027:8060
+networks:
+    common_network:
+        external: true

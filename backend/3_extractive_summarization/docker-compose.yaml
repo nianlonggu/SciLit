@@ -1,0 +1,22 @@
+version: '3'
+
+### environment variables
+
+services:
+    extractive_summarization_service: 
+        build: .
+        image: extractive_summarization_service
+        runtime: nvidia  # comment this out on a CPU-only host machine, and set USE_GPU to 0
+        environment:
+            NVIDIA_VISIBLE_DEVICES: all
+            PYTHONUNBUFFERED: 1
+            USE_GPU: 1
+            PAPER_DATABASE_SERVICE_ADDRESS: http://paper_database_service:8060/get-papers
+        networks:
+            - common_network
+        hostname: extractive_summarization_service
+        ports:
+            - 8026:8060
+networks:
+    common_network:
+        external: true

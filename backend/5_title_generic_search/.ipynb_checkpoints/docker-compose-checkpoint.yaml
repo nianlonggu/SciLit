@@ -1,0 +1,21 @@
+version: '3'
+
+### environment variables
+
+services:
+    title_generic_search_service: 
+        build: .
+        image: title_generic_search_service
+        environment:
+            PYTHONUNBUFFERED: 1
+            PAPER_DATABASE_SERVICE_ADDRESS: http://paper_database_service:8060/get-papers
+            FAST_METADATA_SEARCH_SERVICE_ADDRESS: http://fast_metadata_search_service:8060/check-duplicate
+            DOCUMENT_SEARCH_SERVICE_ADDRESS: http://document_search_overall_service:8060/document-search
+        networks:
+            - common_network
+        hostname: title_generic_search_service
+        ports:
+            - 8029:8060
+networks:
+    common_network:
+        external: true

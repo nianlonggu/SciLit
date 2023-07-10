@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+    
+    paper_database_manager:
+        build: ./src/modules/paper_database
+        image: paper_database_manager
+        command: ["echo","hello"]
+        
+    document_prefetch_build_database_pmcoa:
+        build: ./src/build_database/PMCOA
+        image: document_prefetch_build_database_pmcoa
+        environment:
+            NUM_PROCESSES: 100
+        volumes:
+            - $PWD/data/PMCOA:/app/data

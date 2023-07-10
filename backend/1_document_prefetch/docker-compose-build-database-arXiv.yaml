@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    
+    document_prefetch_base:
+        build: ./src/modules
+        image: document_prefetch_base
+        command: ["echo","hello"]
+    
+    document_prefetch_service_pdf_parsing:
+        build: ./src/service_pdf_parsing
+        image: document_prefetch_service_pdf_parsing
+        command: ["echo","hello"]
+        
+    document_prefetch_build_database_arxiv:
+        build: ./src/build_database/arXiv
+        image: document_prefetch_build_database_arxiv
+        environment:
+            NUM_PROCESSES: 100
+        volumes:
+            - $PWD/data/arXiv:/app/data

@@ -1,0 +1,21 @@
+version: '3'
+
+### environment variables
+
+services:
+    document_reranking_service: 
+        build: .
+        image: document_reranking_service
+        runtime: nvidia  # comment this out on a CPU-only host machine, and set USE_GPU to 0
+        environment:
+            NVIDIA_VISIBLE_DEVICES: all
+            USE_GPU: 1
+            ADDRESS_PAPER_DATABASE_SERVICE: http://paper_database_service:8060/get-papers
+        networks:
+            - common_network
+        hostname: document_reranking_service
+        ports:
+            - 8024:8060
+networks:
+    common_network:
+        external: true

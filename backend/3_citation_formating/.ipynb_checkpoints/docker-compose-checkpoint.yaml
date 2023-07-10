@@ -1,0 +1,19 @@
+version: '3'
+
+### environment variables
+
+services:
+    citation_formating_service: 
+        build: .
+        image: citation_formating_service
+        environment:
+            PYTHONUNBUFFERED: 1
+            PAPER_DATABASE_SERVICE_ADDRESS: http://paper_database_service:8060/get-papers
+        networks:
+            - common_network
+        hostname: citation_formating_service
+        ports:
+            - 8031:8060
+networks:
+    common_network:
+        external: true

@@ -1,0 +1,18 @@
+version: '3'
+
+### environment variables
+
+services:
+    paper_database_service: 
+        build: .
+        image: paper_database_service
+        environment:
+            SERVICE_ADDRESSES: http://document_prefetch_service_overall_arxiv:8060/get-papers,http://document_prefetch_service_overall_pmcoa:8060/get-papers
+        networks:
+            - common_network
+        hostname: paper_database_service
+        ports:
+            - 8023:8060
+networks:
+    common_network:
+        external: true

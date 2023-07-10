@@ -1,0 +1,18 @@
+version: '3'
+
+### environment variables
+
+services:
+    helper_functions_service: 
+        build: .
+        image: helper_functions_service
+        environment:
+            PYTHONUNBUFFERED: 1
+        networks:
+            - common_network
+        hostname: helper_functions_service
+        ports:
+            - 8030:8060
+networks:
+    common_network:
+        external: true

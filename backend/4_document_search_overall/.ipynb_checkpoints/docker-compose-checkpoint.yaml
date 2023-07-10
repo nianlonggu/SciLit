@@ -1,0 +1,21 @@
+version: '3'
+
+### environment variables
+
+services:
+    document_search_overall_service: 
+        build: .
+        image: document_search_overall_service
+        environment:
+            PYTHONUNBUFFERED: 1
+            PAPER_DATABASE_SERVICE_ADDRESS: http://paper_database_service:8060/get-papers
+            RERANK_SERVICE_ADDRESS: http://document_reranking_service:8060/document-rerank
+            PREFETCH_SERVICE_ADDRESSES: http://document_prefetch_service_overall_arxiv:8060/document-search,http://document_prefetch_service_overall_pmcoa:8060/document-search
+        networks:
+            - common_network
+        hostname: document_search_overall_service
+        ports:
+            - 8025:8060
+networks:
+    common_network:
+        external: true

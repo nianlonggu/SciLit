@@ -1,0 +1,8 @@
+version: '3'
+
+### environment variables
+
+services:
+    base_image_deep_learning: 
+        build: .
+        image: base_image_deep_learning
