@@ -35,7 +35,7 @@ services:
         image: document_prefetch_service_ranking
         depends_on:
             - document_prefetch_base
-        runtime: nvidia  # comment this out on a CPU-only host machine, and set USE_GPU to 0
+        runtime: nvidia  # comment this out on a CPU-only host machine
         environment:
             NVIDIA_VISIBLE_DEVICES: all
             IS_PRIVATE_SERVER: ${PRIVATE}
