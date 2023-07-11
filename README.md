@@ -110,6 +110,10 @@ sudo apt update
 curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install nodejs
 ```
+check node version
+```bash
+node -v
+```
 
 ## Prepare Raw Corpus
 Here we demonstrated building the search engine on papers from PubMed Open Access (PMCOA) and arXiv.
