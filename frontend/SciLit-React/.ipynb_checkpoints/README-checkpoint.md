@@ -1,1 +1,0 @@
-# A platform for joint literature discovery, summarization and citation generation

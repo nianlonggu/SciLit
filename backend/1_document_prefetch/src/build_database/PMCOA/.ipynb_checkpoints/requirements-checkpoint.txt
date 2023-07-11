@@ -1,5 +1,0 @@
-lxml==4.9.0
-unidecode
-nltk==3.7
-jsonschema==4.17.3
-six==1.16.0
