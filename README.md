@@ -3,6 +3,7 @@
 A comprehensive full-stack solution has been developed for the creation of a large-scale search engine tailored for scientific papers. This system incorporates natural language processing capabilities, facilitating tasks such as citation recommendations, document summarization, and generation of citation sentences.
 
 LIVE DEMO: https://scilit.vercel.app/
+PAPER: https://aclanthology.org/2023.acl-demo.22.pdf
 
 ![](frontend/screenshots/frontend.png)
 
@@ -206,3 +207,22 @@ export REACT_APP_NLP_SERVER_ADDRESS=http://localhost:8060; npm start
 ```
 
 Now the frontend service (React based) is running on PORT 3000. You can now open your browser and go to http://localhost:3000 to use SciLit!
+
+## Reference
+When using our code or models for your application, please cite the following paper:
+```
+@inproceedings{gu-hahnloser-2023-scilit,
+    title = "{S}ci{L}it: A Platform for Joint Scientific Literature Discovery, Summarization and Citation Generation",
+    author = "Gu, Nianlong  and
+      Hahnloser, Richard H.R.",
+    booktitle = "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 3: System Demonstrations)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.acl-demo.22",
+    pages = "235--246",
+    abstract = "Scientific writing involves retrieving, summarizing, and citing relevant papers, which can be time-consuming processes. Although in many workflows these processes are serially linked, there are opportunities for natural language processing (NLP) to provide end-to-end assistive tools. We propose SciLit, a pipeline that automatically recommends relevant papers, extracts highlights, and suggests a reference sentence as a citation of a paper, taking into consideration the user-provided context and keywords. SciLit efficiently recommends papers from large databases of hundreds of millions of papers using a two-stage pre-fetching and re-ranking literature search system that flexibly deals with addition and removal of a paper database. We provide a convenient user interface that displays the recommended papers as extractive summaries and that offers abstractively-generated citing sentences which are aligned with the provided context and which mention the chosen keyword(s). Our assistive tool for literature discovery and scientific writing is available at https://scilit.vercel.app",
+}
+```
+
