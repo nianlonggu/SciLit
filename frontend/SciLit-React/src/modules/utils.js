@@ -3,7 +3,7 @@ export async function searchDocumentsRequest(
     keywords,
     nResults,
     nlp_server_address,
-    timeout = 20000
+    timeout = 60000
 ) {
     const data = {
         ranking_variable: context,
@@ -38,7 +38,7 @@ export async function searchDocumentsRequest(
 export async function get_papers_content(
     paper_list,
     nlp_server_address,
-    timeout = 15000
+    timeout = 60000
 ) {
     const data = {
         paper_list: paper_list,
@@ -97,7 +97,7 @@ function get_sentence_list_from_paper_content(paper_content) {
 export async function extract_highlights_from_papers(
     paper_content_list,
     nlp_server_address,
-    timeout = 15000
+    timeout = 60000
 ) {
     const batch_sentence_list = paper_content_list.map((item, idx) => {
         return get_sentence_list_from_paper_content(item);
@@ -135,7 +135,7 @@ export async function generate_citations_for_papers(
     context,
     keywords,
     nlp_server_address,
-    timeout = 15000
+    timeout = 60000
 ) {
     const context_list = paper_content_list.map((item, idx) => {
         return context;
@@ -367,7 +367,7 @@ export async function callback_search_pipeline(
 export async function title_generic_search(
     titles,
     nlp_server_address,
-    timeout = 15000
+    timeout = 60000
 ) {
     const query_data = {
         titles: titles,
@@ -395,7 +395,7 @@ export async function title_generic_search(
 export async function text_processing(
     data,
     nlp_server_address,
-    timeout = 15000
+    timeout = 60000
 ) {
     const controller = new AbortController();
     const timeout_id = setTimeout(() => controller.abort(), timeout);
