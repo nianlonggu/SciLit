@@ -12,7 +12,6 @@ PAPER: https://aclanthology.org/2023.acl-demo.22.pdf
 * OS: Ubuntu 22.04 LTS or Debian 10, with one 16 GB GPU for supporting NLP functions.
 * Storage: >= 100 GB
 * RAM: 
-     - 32GB if the database contains around 2~3  millions of papers;
      - 500 GB for 150 million papers
 
 ## Installation
