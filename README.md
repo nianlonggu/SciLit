@@ -1,11 +1,10 @@
-# SciLit
-SciLit: A Platform for Joint Scientific Literature Discovery, Summarization and Citation Generation
-
-![](frontend/screenshots/frontend.png)
+# SciLit: A Platform for Joint Scientific Literature Discovery, Summarization and Citation Generation
 
 A comprehensive full-stack solution has been developed for the creation of a large-scale search engine tailored for scientific papers. This system incorporates natural language processing capabilities, facilitating tasks such as citation recommendations, document summarization, and generation of citation sentences.
 
 LIVE DEMO: https://scilit.vercel.app/
+
+![](frontend/screenshots/frontend.png)
 
 ## System Requirements
 * OS: Ubuntu 22.04 LTS or Debian 10, with one 16 GB GPU for supporting NLP functions.
