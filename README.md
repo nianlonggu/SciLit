@@ -184,7 +184,7 @@ If the host machine does not have GPUs, before running the following commands, f
 
 Once "runtime: nvidia" is commented out, the environment "USE_GPU" is deactivated automatically, so there is no need to change the environment variables.
 
-
+Run the following commands to start the backend services
 
 
 ```bash
