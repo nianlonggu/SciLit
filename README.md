@@ -17,7 +17,7 @@ PAPER: https://aclanthology.org/2023.acl-demo.22.pdf
 
 ## Installation
 ### Install Docker
-
+This step is NOT needed if Docker engine has already been installed.
 #### Install Docker engine
 #####  On Ubuntu
 ```bash
