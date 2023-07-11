@@ -6,7 +6,7 @@ services:
     citation_generation_service: 
         build: .
         image: citation_generation_service
-        runtime: nvidia  # comment this out on a CPU-only host machine, and set USE_GPU to 0
+        runtime: nvidia  # comment this out on a CPU-only host machine
         environment:
             NVIDIA_VISIBLE_DEVICES: all
             PYTHONUNBUFFERED: 1
