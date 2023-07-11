@@ -6,7 +6,7 @@ services:
     extractive_summarization_service: 
         build: .
         image: extractive_summarization_service
-        runtime: nvidia  # comment this out on a CPU-only host machine, and set USE_GPU to 0
+        runtime: nvidia  # comment this out on a CPU-only host machine
         environment:
             NVIDIA_VISIBLE_DEVICES: all
             PYTHONUNBUFFERED: 1
