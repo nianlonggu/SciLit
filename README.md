@@ -73,7 +73,7 @@ docker run hello-world
 #### Change the default folder of docker (optional)
 By default docker save its cache files and logs to /var/lib/docker. Sometimes this can be problematic due to the limited space of /var/lib. In this case, we need to change this default folder to a custom folder with a large space. Please refer https://www.ibm.com/docs/en/z-logdata-analytics/5.1.0?topic=compose-relocating-docker-root-directory for how to change the root directory of docker.
 
-#### Configure GPU support for Docker (for GPU-machine)
+#### Configure GPU support for Docker (optional, only for GPU-machine)
 ```bash
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
       && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
@@ -171,6 +171,22 @@ cd $BASE_DIR
 Running this script automatically builds the databases for PMCOA and arXiv. The dockerized code base for building databases for these two collections is available at **backend/1_document_prefetch/src/build_database/**
 
 ## Start Backend Services
+If the host machine does not have GPUs, before running the following commands, first comment out the line "runtime: nvidia" (by adding a "#" before "runtime") in the following docker-compose.yaml files:
+
+[backend/1_document_prefetch/docker-compose-document-prefetch.yaml#L38](backend/1_document_prefetch/docker-compose-document-prefetch.yaml#L38)
+
+[backend/3_citation_generation/docker-compose.yaml#L9](backend/3_citation_generation/docker-compose.yaml#L9)
+
+[backend/3_document_reranking/docker-compose.yaml#L9](backend/3_document_reranking/docker-compose.yaml#L9)
+
+[backend/3_extractive_summarization/docker-compose.yaml#L9](backend/3_extractive_summarization/docker-compose.yaml#L9)
+
+
+Once "runtime: nvidia" is commented out, the environment "USE_GPU" is deactivated automatically, so there is no need to change the environment variables.
+
+
+
+
 ```bash
 #### We denote BASE_DIR as the root path of this repo, where this README is located.
 BASE_DIR=$PWD
