@@ -181,10 +181,12 @@ If the host machine does not have GPUs, before running the following commands, f
 
 [backend/3_extractive_summarization/docker-compose.yaml#L9](backend/3_extractive_summarization/docker-compose.yaml#L9)
 
+Note: Running the SciBERT-based document reranking on CPU can be slow, please consider skipping reranking in this case by setting "requires_reranking" to False in line:
+[backend/4_document_search_overall/service.py#L267](backend/4_document_search_overall/service.py#L267)
 
 Once "runtime: nvidia" is commented out, the environment "USE_GPU" is deactivated automatically, so there is no need to change the environment variables.
 
-Run the following commands to start the backend services
+Run the following commands to start the backend services:
 
 
 ```bash
