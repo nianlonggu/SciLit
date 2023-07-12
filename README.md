@@ -1,4 +1,4 @@
-# A Platform for Joint Scientific Literature Discovery, Summarization and Citation Generation
+# SciLit: A Platform for Joint Scientific Literature Discovery, Summarization and Citation Generation
 
 A comprehensive full-stack solution has been developed for the creation of a large-scale search engine tailored for scientific papers. This system incorporates natural language processing capabilities, facilitating tasks such as citation recommendations, document summarization, and generation of citation sentences.
 
