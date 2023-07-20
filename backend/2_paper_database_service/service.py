@@ -106,10 +106,7 @@ def get_papers():
         results = {}
         threads = []
 
-        # for thread_i, service_addr in enumerate( args.get_papers_service_address_list  ):
-            
-        for thread_i, service_addr in enumerate( [addr for addr in args.get_papers_service_address_list if "2300" not in addr]  + [ "https://bd3e-130-60-23-51.ngrok-free.app/get-papers" ] ):   
-
+        for thread_i, service_addr in enumerate( args.get_papers_service_address_list  ):
             
             t = threading.Thread( target=get_papers_kernel, args=( paper_list, projection, service_addr, thread_i, results, request_info.get("timeout", 10) ) )
             t.start()
