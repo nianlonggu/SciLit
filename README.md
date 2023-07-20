@@ -245,11 +245,11 @@ When building docker images, especially during running apt-get install XXX, ther
 }
 
 ```
-Since the proxy issue can also influence the installation of Grobid, we also need to set the proxy for grobid. In the file [backend/1_document_prefetch/src/service_pdf_parsing/Dockerfile](backend/1_document_prefetch/src/service_pdf_parsing/Dockerfile), add the following environment in the "# Set Environment Variable" part:
+Since the proxy issue can also influence the installation of Grobid, we also need to set the proxy for grobid. In the file [backend/1_document_prefetch/src/service_pdf_parsing/Dockerfile](backend/1_document_prefetch/src/service_pdf_parsing/Dockerfile#L7), add the following environment in the "# Set Environment Variable" part:
 ```
 ENV GRADLE_OPTS="-Dhttps.proxyHost=proxy.XXXX.XXX -Dhttps.proxyPort=XXXX -Dhttp.proxyHost=proxy.XXXX.XXX -Dhttp.proxyPort=XXXX"
 ```
-In the same time, since when building the arXiv database, we internally run a grobid server at docker container's localhost, we need to add the following environment variable to file [backend/1_document_prefetch/src/build_database/arXiv/Dockerfile](backend/1_document_prefetch/src/build_database/arXiv/Dockerfile):
+In the same time, since when building the arXiv database, we internally run a grobid server at docker container's localhost, we need to add the following environment variable to file [backend/1_document_prefetch/src/build_database/arXiv/Dockerfile](backend/1_document_prefetch/src/build_database/arXiv/Dockerfile#L7):
 ```
 ENV no_proxy=localhost,127.0.0.1
 ```
