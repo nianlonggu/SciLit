@@ -230,6 +230,23 @@ export REACT_APP_NLP_SERVER_ADDRESS=http://localhost:8060; npm start
 
 Now the frontend service (React based) is running on PORT 3000. You can now open your browser and go to http://localhost:3000 to use SciLit!
 
+## Troubleshoot
+### Proxy Issue
+When building docker images, especially during running apt-get install XXX, there can be an error showing "XXX source is not reachable," this typically indicates a proxy issue. To fix this, configure the docker proxy by adding the following lines to the file "~/.docker/config.json":
+```
+{
+ "proxies": {
+ "default": {
+ "httpProxy": "http://proxy.XXXX.XXX:PORT",
+ "httpsProxy": "http://proxy.XXXX.XXX:PORT",
+ "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
+ }
+ }
+}
+
+```
+
+
 ## Reference
 When using our code or models for your application, please cite the following paper:
 ```
