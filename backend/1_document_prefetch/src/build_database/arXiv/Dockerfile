@@ -1,9 +1,6 @@
 FROM document_prefetch_service_pdf_parsing as base
 
-ENV COLLECTION="arXiv"
 ENV ROOT_DATA_PATH=/app/data
-## Here setting the default number of processes to 16, and this can be overwritten when calling docker run by setting -e (or --env)
-ENV NUM_PROCESSES=16
 
 SHELL ["conda", "run", "-n", "my_env", "/bin/bash", "-c"]
 

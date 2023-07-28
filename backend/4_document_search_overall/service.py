@@ -32,15 +32,6 @@ def get_papers( paper_list, projection = None ):
                     headers = {"Content-Type": "application/json", 'Connection': 'close'} ).json()["response"]
     return results
 
-def get_sentence_list_from_parsed( parsed ):
-    sentence_list = []
-    for section in parsed:
-        sentence_list.append(str(section.get( "section_title", "" )))
-        for para in section.get("section_text",[]):
-            for sen in para.get("paragraph_text", []):
-                sentence_list.append( str(sen.get("sentence_text","")) )
-    return sentence_list
-
 """
 current version of request information.
 'ranking_id_value': '', 'ranking_id_field': '', 'ranking_id_type': '', 
@@ -169,30 +160,30 @@ def remove_duplicate( paper_id_list ):
     return [paper_id_list[idx] for idx in  sorted(doc_indices_wo_duplicates) ]
 
 
-def get_section_text_list( paper, top_n_sections = None ):
-    if paper is None:
-        paper = {}
-    title = paper.get("Title","")
-    abstract_parsed = paper.get("Content",{}).get("Abstract_Parsed",[])
-    fullbody_parsed = paper.get("Content",{}).get("Fullbody_Parsed",[])
-    fulltext_parsed = abstract_parsed + fullbody_parsed
-
-    section_text_list = [title]
-    for section in fulltext_parsed:
-        section_text = ""        
+def get_sentence_list_from_parsed( parsed ):
+    sentence_list = []
+    for section in parsed:
+        sentence_list.append(str(section.get( "section_title", "" )))
         for para in section.get("section_text",[]):
-            for sen in para.get("paragraph_text",[]):
-                section_text += sen.get("sentence_text", "") + " "
-        section_text_list.append( section_text )
-    
-    if top_n_sections is not None:
-        section_text_list = section_text_list[:top_n_sections]
-    
-    return section_text_list
+            for sen in para.get("paragraph_text", []):
+                sentence_list.append( str(sen.get("sentence_text","")) )
+    return sentence_list
 
-def get_doc_text( paper ):
-    section_text_list = get_section_text_list(paper)
-    return " ".join(section_text_list)
+def parse_document( doc_data ):
+    ngram_set = set()
+        
+    ## Title
+    title =  str(doc_data.get("Title", "")).strip()          
+    ## Abstract
+    abstract_sen_list = get_sentence_list_from_parsed(doc_data.get( "Content", {} ).get( "Abstract_Parsed", [] ))
+    ## Fullbody
+    fullbody_sen_list = get_sentence_list_from_parsed(doc_data.get( "Content", {} ).get( "Fullbody_Parsed", [] ))
+    
+    sen_list = [ title ] + abstract_sen_list + fullbody_sen_list
+    ## no need to tokenize here, since it is done internally within sentence ranker
+    doc_text = " ".join( sen_list ) 
+    
+    return doc_text
 
 def rank_based_on_query_to_doc_similarity( paper_id_list, ranking_source, nResults = None ):
     global sentence_ranker
@@ -202,14 +193,14 @@ def rank_based_on_query_to_doc_similarity( paper_id_list, ranking_source, nResul
     
     tic = time.time()
     
-    paper_content_list = get_papers( paper_id_list, { "Title":1, "Content.Abstract_Parsed":1, "Content.Fullbody_Parsed": 1 } )
+    paper_content_list = get_papers( paper_id_list )
     if len(paper_content_list) != len(paper_id_list):
         return paper_id_list
     
     print( "load paper time:", time.time() - tic )
     
     try: 
-        doc_text_list = [ get_doc_text( paper_content ) for paper_content in paper_content_list ]
+        doc_text_list = [ parse_document( paper_content ) for paper_content in paper_content_list ]
         _,  doc_indices = sentence_ranker.rank_sentences( ranking_source, doc_text_list )
         
         selected_papers_to_be_reranked = [ paper_id_list[idx] for idx in doc_indices ]
@@ -267,6 +258,13 @@ def document_search():
         requires_reranking = request_info.get( "requires_reranking", True )
         reranking_method = request_info.get( "reranking_method", "scibert" )
         
+        
+        requires_removing_duplicates = True
+        requires_additional_prefetching = True
+        requires_reranking = True
+        reranking_method = "scibert"
+        
+        
         ## prefetch results from a list of prefetching document search servers        
         prefetched_paper_id_list, nMatchingDocuments = prefetch(
                     ranking_source + " " + keywords.replace( "<OR>", " " ).replace( "<NOT>", " " ).replace( "<AND>", " " ),
@@ -299,6 +297,7 @@ def document_search():
         abort(400)
 
     sem.release()
+    
     return json.dumps(json_out), 201
 
 

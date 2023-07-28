@@ -17,6 +17,7 @@ import argparse
 
 
 ROOT_DATA_PATH = os.getenv("ROOT_DATA_PATH")
+NUM_PROCESSES = int(os.getenv("NUM_PROCESSES"))
 NUM_EMBEDDING_INDEX_SHARDS = int(os.getenv("NUM_EMBEDDING_INDEX_SHARDS"))
 
 SENT2VEC_MODEL_PATH = os.getenv("SENT2VEC_MODEL_PATH")
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     parser.add_argument("-text_encoder_model_path", default = SENT2VEC_MODEL_PATH )
     parser.add_argument("-start", type = int, default = None)
     parser.add_argument("-size", type = int, default = None)
-    parser.add_argument("-n_processes", type = int, default = NUM_EMBEDDING_INDEX_SHARDS )
+    parser.add_argument("-n_processes", type = int, default = NUM_PROCESSES )
     parser.add_argument("-n_docs_per_process", type = int, default = None )
     
     args = parser.parse_args()
@@ -94,6 +95,16 @@ if __name__ == "__main__":
     ## make sure all processes have been finished!
     for t in threads:
         t.join()
+        
+    ## adjust the number of shards for embedding index, as specified by NUM_EMBEDDING_INDEX_SHARDS
+    ## This is needed because for CPU approximate nearest search, we may need more shards, but for GPU brute-force nearest neighbor search, we only need one or two shards, since too many shards will increase the GPU memory overhead.
+    
+    print("Adjusting number of shards for embedding index ...")
+    subprocess.run( ["python", "adjust_num_shards_for_embedding_index.py",
+                     "-embedding_index_folder", ROOT_DATA_PATH + "/ranking_buffer/embedding_index/",
+                     "-embedding_index_name_prefix", "embedding_index.db_",
+                     "-num_shards", str( NUM_EMBEDDING_INDEX_SHARDS )
+                    ] )
     
     print("All Done!")
 

@@ -17,5 +17,6 @@ services:
         image: document_prefetch_build_database_arxiv
         environment:
             NUM_PROCESSES: 100
+            COLLECTION: arXiv
         volumes:
             - $PWD/data/arXiv:/app/data

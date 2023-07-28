@@ -15,8 +15,8 @@ services:
         networks:
             - common_network
         hostname: citation_generation_service
-        ports:
-            - 8027:8060
+        # ports:
+        #     - 8027:8060
 networks:
     common_network:
         external: true

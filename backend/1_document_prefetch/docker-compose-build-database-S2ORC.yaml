@@ -7,11 +7,11 @@ services:
         image: paper_database_manager
         command: ["echo","hello"]
         
-    document_prefetch_build_database_pmcoa:
-        build: ./src/build_database/PMCOA
-        image: document_prefetch_build_database_pmcoa
+    document_prefetch_build_database_s2orc:
+        build: ./src/build_database/S2ORC
+        image: document_prefetch_build_database_s2orc
         environment:
             NUM_PROCESSES: 100
-            COLLECTION: PMCOA
+            COLLECTION: S2ORC
         volumes:
-            - $PWD/data/PMCOA:/app/data
+            - $PWD/data/S2ORC:/app/data

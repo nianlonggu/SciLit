@@ -11,8 +11,8 @@ services:
         networks:
             - common_network
         hostname: helper_functions_service
-        ports:
-            - 8030:8060
+        # ports:
+        #     - 8030:8060
 networks:
     common_network:
         external: true

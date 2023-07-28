@@ -18,9 +18,10 @@ from more_itertools import unique_everseen
 
 import re
 from nltk.tokenize import RegexpTokenizer
-
+ 
 import nltk
 from nltk.corpus import stopwords
+nltk.download('omw-1.4')
 stopwords_set = set(stopwords.words('english'))
 
 import GPUtil
@@ -124,7 +125,6 @@ def rerank_by_scibert( paper_id_list, ranking_source, keywords ):
     if ranking_source.strip() == "" and keywords.strip() == "":
         return paper_id_list
     
-    
     print(ranking_source, keywords )
     
     tic = time.time()
@@ -146,10 +146,11 @@ def rerank_by_scibert( paper_id_list, ranking_source, keywords ):
     """ handle the exact match when users use the title to search for a paper """
     try:
         sorted_paper_id_list, sorted_sims = rerank_based_on_query2section_similarity( paper_id_list, ranking_source, return_similarity = True )
+        
         prefix_papers = []
-        for pos in range( min( len(sorted_paper_id_list), 5 ) ):
+        for pos in range( min( len(sorted_paper_id_list), 10 ) ):
             sorted_paper_id, sim = sorted_paper_id_list[pos], sorted_sims[pos]
-            if sim > 0.98:
+            if sim > 0.9:
                 prefix_papers.append( sorted_paper_id )
     except:
         prefix_papers = []
@@ -157,7 +158,7 @@ def rerank_by_scibert( paper_id_list, ranking_source, keywords ):
     for paper_id in selected_papers_to_be_reranked:
         matched = False
         for pid in prefix_papers:
-            if paper_id == pid:
+            if paper_id == pid: 
                 matched = True
                 break
         if not matched:
@@ -174,7 +175,7 @@ def document_rerank():
     global sem
     
     sem.acquire()
-
+    
     try:
         if not request.json:
             assert False    
@@ -204,7 +205,7 @@ def document_rerank():
         sem.release()
         abort(400)
 
-    sem.release()
+    sem.release()  
 
     return json.dumps(json_out), 201
 

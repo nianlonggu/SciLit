@@ -33,6 +33,8 @@ SENT2VEC_MODEL_PATH = os.getenv("SENT2VEC_MODEL_PATH")
 IS_PRIVATE_SERVER = int( os.getenv("IS_PRIVATE_SERVER") )
 USE_GPU = int( os.getenv("USE_GPU") )
 
+EMBEDDING_INDEX_PRECISION = os.getenv("EMBEDDING_INDEX_PRECISION")
+
 SERVICE_SUFFIX = os.getenv("SERVICE_SUFFIX")
 
 
@@ -282,16 +284,14 @@ if __name__ == "__main__":
     
     parser.add_argument( "-is_private_server", type = int, default = IS_PRIVATE_SERVER )
     
-    parser.add_argument( "-internal_precision", default = "float32" )
+    parser.add_argument( "-internal_precision", default = EMBEDDING_INDEX_PRECISION )
     parser.add_argument( "-requires_precision_conversion", type = int, default = 1 )
     parser.add_argument( "-num_threads_per_shard", type = int, default = 1 )
     parser.add_argument( "-normalize_query_embedding", type = int, default = 1 )
     
     args = parser.parse_args()
     
-    
     wait_for_service(ADDRESS_SERVICE_BUILD_INDEX)
-    
     
     #Convert folders to absolute path
     args.inverted_index_folder = os.path.abspath( args.inverted_index_folder  )
@@ -311,6 +311,9 @@ if __name__ == "__main__":
             print( "Using GPU brute-force NN on devices:", args.gpu_list )
     else:
         args.gpu_list = []
+        
+    if len(args.gpu_list) == 0:
+        args.internal_precision = "float32"
         
     mp.set_start_method('spawn')
     

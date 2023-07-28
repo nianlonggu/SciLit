@@ -10,6 +10,6 @@ RUN python -c "from huggingface_hub import hf_hub_download; hf_hub_download(repo
 RUN python -c "from transformers import BertTokenizerFast, BertForNextSentencePrediction; model_path = 'scieditor/document-reranking-scibert'; tokenizer = BertTokenizerFast.from_pretrained(model_path); model = BertForNextSentencePrediction.from_pretrained(model_path)"
 
 WORKDIR /app/src
-COPY . .
+# COPY . .
 
 CMD [ "bash", "run_service.sh" ]

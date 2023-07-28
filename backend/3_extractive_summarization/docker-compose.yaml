@@ -15,8 +15,8 @@ services:
         networks:
             - common_network
         hostname: extractive_summarization_service
-        ports:
-            - 8026:8060
+        # ports:
+        #     - 8026:8060
 networks:
     common_network:
         external: true

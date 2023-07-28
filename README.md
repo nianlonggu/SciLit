@@ -115,7 +115,32 @@ node -v
 ```
 
 ## Prepare Raw Corpus
-Here we demonstrated building the search engine on papers from PubMed Open Access (PMCOA) and arXiv.
+Here we demonstrated building the search engine on papers from S2ORC, PubMed Open Access (PMCOA) and arXiv.
+### S2ORC
+S2ORC can be accessed via [semantic scholar api](https://www.semanticscholar.org/product/api). Here we only download a tiny subset to demonstrate the pipeline. 
+
+```bash
+mkdir -p backend/1_document_prefetch/data/S2ORC/raw/metadata
+mkdir -p backend/1_document_prefetch/data/S2ORC/raw/pdf_parses
+wget -P backend/1_document_prefetch/data/S2ORC/raw/metadata https://huggingface.co/scieditor/example_data_S2ORC/raw/main/metadata/metadata_0.jsonl
+wget -P backend/1_document_prefetch/data/S2ORC/raw/metadata https://huggingface.co/scieditor/example_data_S2ORC/raw/main/metadata/metadata_1.jsonl
+wget -P backend/1_document_prefetch/data/S2ORC/raw/pdf_parses https://huggingface.co/scieditor/example_data_S2ORC/resolve/main/pdf_parses/pdf_parses_0.jsonl
+wget -P backend/1_document_prefetch/data/S2ORC/raw/pdf_parses https://huggingface.co/scieditor/example_data_S2ORC/resolve/main/pdf_parses/pdf_parses_1.jsonl
+
+```
+This is how the files are organized:
+```
+backend/1_document_prefetch/data/S2ORC/
+└── raw
+    ├── metadata
+    │   ├── metadata_0.jsonl
+    │   └── metadata_1.jsonl
+    └── pdf_parses
+        ├── pdf_parses_0.jsonl
+        └── pdf_parses_1.jsonl
+```
+
+
 ### PMCOA
 We can download the .tar.gz files from the official FTP service https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_bulk/oa_comm/xml/, and put the files into the folder:
 ```
@@ -208,6 +233,7 @@ cd $BASE_DIR/backend/5_title_generic_search && docker-compose up --build -d
 cd $BASE_DIR/backend/final_api_gateway && docker-compose up --build -d
 
 cd $BASE_DIR
+
 ```
 
 By default, port 8060 is used by the final API gateway to communicate with the frontend or API developers.

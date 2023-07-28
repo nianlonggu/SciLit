@@ -14,8 +14,8 @@ services:
         networks:
             - common_network
         hostname: title_generic_search_service
-        ports:
-            - 8029:8060
+        # ports:
+        #     - 8029:8060
 networks:
     common_network:
         external: true

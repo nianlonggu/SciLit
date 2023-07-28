@@ -12,8 +12,8 @@ services:
         networks:
             - common_network
         hostname: citation_formating_service
-        ports:
-            - 8031:8060
+        # ports:
+        #     - 8031:8060
 networks:
     common_network:
         external: true

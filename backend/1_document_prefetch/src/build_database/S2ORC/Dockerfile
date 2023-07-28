@@ -12,10 +12,3 @@ RUN pip install -r requirements.txt
 ## Note: when calling docker run, one must map the host machine's volume to /app/data
 ## The host volume is expected to contain all the data needed for the search engine
 CMD [ "bash", "run.sh" ]
-
-
-######## Required Environment Variables #########
-# NUM_PROCESSES
-
-######## Monting Volume ######
-# /app/data
