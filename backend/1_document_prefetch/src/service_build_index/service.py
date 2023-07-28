@@ -24,6 +24,8 @@ CORS(app)
 
 ROOT_DATA_PATH = os.getenv("ROOT_DATA_PATH")
 SERVICE_SUFFIX = os.getenv("SERVICE_SUFFIX")
+NUM_EMBEDDING_INDEX_SHARDS = int(os.getenv("NUM_EMBEDDING_INDEX_SHARDS"))
+
 
 ADDRESS_SERVICE_PAPER_DATABASE = f"http://document_prefetch_service_paper_database_{SERVICE_SUFFIX}:8060"
 ADDRESS_SERVICE_RANKING = f"http://document_prefetch_service_ranking_{SERVICE_SUFFIX}:8060"
@@ -154,6 +156,14 @@ def build_index_pipeline( reboot_services_after_building = True ):
                    headers = {"Content-Type":"application/json"} ).json()["response"])
         except:
             print("fail")
+
+            
+def adjust_num_shards_for_embedding_index():
+    subprocess.run( ["python", "adjust_num_shards_for_embedding_index.py",
+                     "-embedding_index_folder", ROOT_DATA_PATH + "/ranking/embedding_index/",
+                     "-embedding_index_name_prefix", "embedding_index.db_",
+                     "-num_shards", str( NUM_EMBEDDING_INDEX_SHARDS )
+                    ] )
             
 
 @app.route('/build-index', methods=['POST'])
@@ -194,7 +204,11 @@ if __name__ == '__main__':
         
         ## In this case, the service for paper database, ranking and duplicate checking cannot be running, so we cannot signal them to reboot by sending http requests. Therefore, we set reboot_services_after_building to False
         build_index_pipeline(reboot_services_after_building = False)
-    
+        
+    if len( glob( ROOT_DATA_PATH + "/ranking/embedding_index/embedding_index.db*" ) ) != NUM_EMBEDDING_INDEX_SHARDS:
+        print("Specified number of embedding index has changed, adjusting the number of shards ...")
+        adjust_num_shards_for_embedding_index()
+        
     
     print("\n\nWaiting for requests...")
     sem = threading.Semaphore()

@@ -7,13 +7,7 @@ LIVE DEMO: https://scilit.vercel.app/
 PAPER: https://aclanthology.org/2023.acl-demo.22.pdf
 
 ![](frontend/screenshots/frontend.png)
-
-## System Requirements
-* OS: Ubuntu 22.04 LTS or Debian 10, with one 16 GB GPU for supporting NLP functions.
-* Storage: >= 100 GB
-* RAM: 
-     - 500 GB for 150 million papers
-
+ 
 ## Installation
 ### Install Docker
 This step is NOT needed if Docker engine has already been installed.
