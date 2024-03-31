@@ -756,7 +756,7 @@ export default function App() {
 
               <TextField 
                   inputRef = {input_context_ref}
-                  label = "Context Text"
+                  label = "Query Text. E.g., recommend papers on RAG (retrieval augmented generation) from 2022 to 2024."
                   variant="filled"
                   multiline = {true}
                   maxRows = {(windowSize.innerHeight - 310 ) /2 / 25}
