@@ -770,7 +770,7 @@ export default function App() {
 
               <TextField 
                   inputRef = {input_keywords_ref}
-                  label = "Keywords"
+                  label = "Keywords. E.g., language model; Transformer"
                   variant="filled"
                   sx = {{ "width":"100%", "mb":2}}
               >
