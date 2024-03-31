@@ -6,8 +6,8 @@ export async function searchDocumentsRequest(
     timeout = 200000
 ) {
     const data = {
-        ranking_variable: context,
-        keywords: keywords.replaceAll(";", "\\t"),
+        ranking_variable: "[AI]" + context,
+        keywords: keywords.replaceAll(";", "<AND>"),
         paper_list: "",
         prefetch_nResults_per_collection: 100,
         nResults: nResults,
